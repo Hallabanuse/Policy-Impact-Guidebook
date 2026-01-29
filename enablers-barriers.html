@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Enablers & Barriers - Government Support for PFAS Regulation
+        </title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background: #f5f5f5;
+                padding: 20px;
+                min-width: 1400px;
+            }
+
+            .container {
+                max-width: 1600px;
+                margin: 0 auto;
+                background: white;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Header */
+            .header {
+                background: linear-gradient(135deg, #2d5016 0%, #4a7c23 100%);
+                color: white;
+                padding: 25px 30px;
+                border-radius: 8px;
+                margin-bottom: 25px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+
+            .header p {
+                font-size: 13px;
+                line-height: 1.6;
+                opacity: 0.9;
+            }
+
+            /* Categories bar */
+            .categories-bar {
+                display: flex;
+                gap: 8px;
+                margin-bottom: 25px;
+                flex-wrap: wrap;
+            }
+
+            .category-pill {
+                background: #4a5568;
+                color: white;
+                padding: 8px 16px;
+                border-radius: 4px;
+                font-size: 11px;
+                font-weight: 500;
+            }
+
+            /* Main question */
+            .main-question {
+                text-align: center;
+                font-size: 20px;
+                color: #333;
+                margin-bottom: 30px;
+                padding: 20px;
+                background: #f8f9fa;
+                border-radius: 8px;
+            }
+
+            .main-question em {
+                color: #2d5016;
+                font-style: italic;
+            }
+
+            /* Diagram container */
+            .diagram-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+                padding: 30px 20px;
+                background: #fafafa;
+                border-radius: 8px;
+                min-height: 600px;
+            }
+
+            /* Enablers column */
+            .enablers-column {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                max-width: 320px;
+            }
+
+            /* Barriers column */
+            .barriers-column {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                max-width: 320px;
+            }
+
+            /* Factor boxes */
+            .factor {
+                padding: 12px 16px;
+                border-radius: 6px;
+                font-size: 11px;
+                line-height: 1.4;
+                font-weight: 500;
+                position: relative;
+            }
+
+            .factor .category-tag {
+                font-size: 8px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                opacity: 0.7;
+                display: block;
+                margin-bottom: 4px;
+            }
+
+            /* Strong enabler */
+            .strong-enabler {
+                background: #48bb78;
+                color: white;
+            }
+
+            /* Enabler */
+            .enabler {
+                background: #c6f6d5;
+                color: #22543d;
+            }
+
+            /* Mixed/neutral */
+            .mixed {
+                background: #e2e8f0;
+                color: #4a5568;
+            }
+
+            /* Barrier */
+            .barrier {
+                background: #fed7d7;
+                color: #822727;
+            }
+
+            /* Strong barrier */
+            .strong-barrier {
+                background: #e53e3e;
+                color: white;
+            }
+
+            /* Strength indicator */
+            .strength {
+                position: absolute;
+                top: 8px;
+                right: 10px;
+                font-size: 10px;
+                font-weight: bold;
+                opacity: 0.8;
+            }
+
+            /* Center section with actor box */
+            .center-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            /* Actor box */
+            .actor-box {
+                border: 3px solid #42aec9;
+                background: white;
+                padding: 25px 30px;
+                border-radius: 8px;
+                text-align: center;
+                max-width: 280px;
+                box-shadow: 0 4px 12px rgba(66, 174, 201, 0.2);
+            }
+
+            .actor-label {
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: #42aec9;
+                font-weight: 600;
+                margin-bottom: 8px;
+            }
+
+            .actor-title {
+                font-size: 14px;
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 12px;
+            }
+
+            .behaviour-label {
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: #666;
+                font-weight: 600;
+                margin-bottom: 6px;
+            }
+
+            .behaviour-text {
+                font-size: 13px;
+                color: #333;
+                line-height: 1.4;
+            }
+
+            /* Arrow */
+            .arrow {
+                font-size: 32px;
+                color: #999;
+            }
+
+            /* Outcome box */
+            .outcome-box {
+                border: 3px solid #b2dfb2;
+                background: white;
+                padding: 20px 25px;
+                border-radius: 50%;
+                text-align: center;
+                width: 180px;
+                height: 180px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .outcome-label {
+                font-size: 9px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: #48bb78;
+                font-weight: 600;
+                margin-bottom: 6px;
+            }
+
+            .outcome-text {
+                font-size: 12px;
+                color: #333;
+                line-height: 1.4;
+                font-weight: 500;
+            }
+
+            /* Column headers */
+            .column-header {
+                font-size: 14px;
+                font-weight: 600;
+                color: #333;
+                text-align: center;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+                border-bottom: 2px solid #ddd;
+            }
+
+            .column-header.enablers {
+                color: #276749;
+            }
+
+            .column-header.barriers {
+                color: #9b2c2c;
+            }
+
+            /* Legend */
+            .legend {
+                margin-top: 30px;
+                padding: 20px;
+                background: #f9f9f9;
+                border-radius: 8px;
+            }
+
+            .legend-title {
+                font-size: 13px;
+                font-weight: bold;
+                margin-bottom: 15px;
+                color: #333;
+            }
+
+            .legend-items {
+                display: flex;
+                gap: 25px;
+                flex-wrap: wrap;
+            }
+
+            .legend-item {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .legend-box {
+                width: 60px;
+                height: 24px;
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 10px;
+                font-weight: 600;
+            }
+
+            .legend-text {
+                font-size: 11px;
+                color: #555;
+            }
+
+            /* Strategic implications */
+            .implications {
+                margin-top: 30px;
+                padding: 25px;
+                background: #f0f7ff;
+                border-radius: 8px;
+                border-left: 4px solid #42aec9;
+            }
+
+            .implications h2 {
+                font-size: 15px;
+                color: #333;
+                margin-bottom: 15px;
+            }
+
+            .implications ul {
+                font-size: 12px;
+                color: #555;
+                line-height: 1.8;
+                margin-left: 20px;
+            }
+
+            .implications li {
+                margin-bottom: 8px;
+            }
+
+            .implications strong {
+                color: #2d5016;
+            }
+
+            /* Footer */
+            .footer {
+                margin-top: 30px;
+                padding-top: 15px;
+                border-top: 1px solid #ddd;
+                font-size: 10px;
+                color: #666;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <h1>Enablers & Barriers Analysis</h1>
+                <p>
+                    Mapping the factors that drive or inhibit the target
+                    behaviour. This analysis helps identify where to focus
+                    advocacy efforts for maximum impact.
+                </p>
+            </div>
+
+            <!-- Categories bar -->
+            <div class="categories-bar">
+                <div class="category-pill">Info & Knowledge</div>
+                <div class="category-pill">Emotions</div>
+                <div class="category-pill">Rules & Regulations</div>
+                <div class="category-pill">Material Incentives</div>
+                <div class="category-pill">Capacity</div>
+                <div class="category-pill">Choice Architecture</div>
+                <div class="category-pill">Cultural Norms</div>
+            </div>
+
+            <!-- Main question -->
+            <div class="main-question">
+                What <em>barriers and enablers</em> are driving the behaviour of
+                your <em>target actor</em>?
+            </div>
+
+            <!-- Main diagram -->
+            <div class="diagram-container">
+                <!-- Enablers Column -->
+                <div class="enablers-column">
+                    <div class="column-header enablers">ENABLERS</div>
+
+                    <div class="factor strong-enabler">
+                        <span class="strength">++</span>
+                        <span class="category-tag">Material Incentives</span>
+                        Avoiding €18B+ annual water treatment costs that fall on
+                        public budget
+                    </div>
+
+                    <div class="factor strong-enabler">
+                        <span class="strength">++</span>
+                        <span class="category-tag">Info & Knowledge</span>
+                        Extensive scientific evidence on health impacts (cancer,
+                        immune system, fertility)
+                    </div>
+
+                    <div class="factor strong-enabler">
+                        <span class="strength">++</span>
+                        <span class="category-tag">Info & Knowledge</span>
+                        Clear contamination data: 1,500+ sites, PFAS in nearly
+                        all citizens' blood
+                    </div>
+
+                    <div class="factor strong-enabler">
+                        <span class="strength">++</span>
+                        <span class="category-tag">Emotions</span>
+                        High public concern - 75%+ support ban when informed
+                        about issue
+                    </div>
+
+                    <div class="factor enabler">
+                        <span class="strength">+</span>
+                        <span class="category-tag">Material Incentives</span>
+                        Water utilities (well-organised lobby) actively pushing
+                        for source reduction
+                    </div>
+
+                    <div class="factor enabler">
+                        <span class="strength">+</span>
+                        <span class="category-tag">Emotions</span>
+                        Personal relevance - officials and their families also
+                        drink the water
+                    </div>
+
+                    <div class="factor enabler">
+                        <span class="strength">+</span>
+                        <span class="category-tag">Rules & Regulations</span>
+                        Regional process already underway - supporting it is the
+                        "default" path
+                    </div>
+
+                    <div class="factor enabler">
+                        <span class="strength">+</span>
+                        <span class="category-tag">Rules & Regulations</span>
+                        New drinking water limits (2026) create compliance
+                        pressure
+                    </div>
+
+                    <div class="factor enabler">
+                        <span class="strength">+</span>
+                        <span class="category-tag">Cultural Norms</span>
+                        Water protection traditionally valued across political
+                        spectrum
+                    </div>
+
+                    <div class="factor enabler">
+                        <span class="strength">+</span>
+                        <span class="category-tag">Choice Architecture</span>
+                        Restriction proposal already drafted - just need to vote
+                        yes
+                    </div>
+                </div>
+
+                <!-- Center Section -->
+                <div class="center-section">
+                    <div class="actor-box">
+                        <div class="actor-label">Target Actor</div>
+                        <div class="actor-title">Government Officials</div>
+                        <div class="behaviour-label">Target Behaviour</div>
+                        <div class="behaviour-text">
+                            Support strong PFAS regulation (limited exemptions)
+                            in the regional vote
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Barriers Column -->
+                <div class="barriers-column">
+                    <div class="column-header barriers">BARRIERS</div>
+
+                    <div class="factor strong-barrier">
+                        <span class="strength">--</span>
+                        <span class="category-tag">Material Incentives</span>
+                        Chemical industry is major employer and tax contributor
+                    </div>
+
+                    <div class="factor strong-barrier">
+                        <span class="strength">--</span>
+                        <span class="category-tag">Emotions</span>
+                        Fear of being blamed for job losses if industry
+                        relocates
+                    </div>
+
+                    <div class="factor strong-barrier">
+                        <span class="strength">--</span>
+                        <span class="category-tag">Rules & Regulations</span>
+                        Industry has strong lobbying access to ministries
+                    </div>
+
+                    <div class="factor barrier">
+                        <span class="strength">-</span>
+                        <span class="category-tag">Capacity</span>
+                        Limited technical expertise to evaluate "essential use"
+                        claims
+                    </div>
+
+                    <div class="factor barrier">
+                        <span class="strength">-</span>
+                        <span class="category-tag">Info & Knowledge</span>
+                        Uncertainty about availability of PFAS alternatives
+                    </div>
+
+                    <div class="factor barrier">
+                        <span class="strength">-</span>
+                        <span class="category-tag">Cultural Norms</span>
+                        Pro-business political culture in current government
+                    </div>
+
+                    <div class="factor barrier">
+                        <span class="strength">-</span>
+                        <span class="category-tag">Emotions</span>
+                        Industry "blanket ban" framing creates hesitation
+                    </div>
+
+                    <!-- Mixed factor -->
+                    <div class="factor mixed">
+                        <span class="strength">±</span>
+                        <span class="category-tag">Rules & Regulations</span>
+                        Government transition expected - new position uncertain
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legend -->
+            <div class="legend">
+                <div class="legend-title">Key</div>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <div class="legend-box strong-enabler">+ +</div>
+                        <div class="legend-text">Strong enabler</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-box enabler">+</div>
+                        <div class="legend-text">Enabler</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-box mixed">±</div>
+                        <div class="legend-text">Mixed / neutral</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-box barrier">-</div>
+                        <div class="legend-text">Barrier</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-box strong-barrier">- -</div>
+                        <div class="legend-text">Strong barrier</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategic Implications -->
+            <div class="implications">
+                <h2>Strategic Implications</h2>
+                <ul>
+                    <li>
+                        <strong>Amplify the economic case:</strong> Treatment
+                        costs (€18B+) far exceed transition costs. Frame
+                        regulation as fiscally responsible - make officials fear
+                        the cost of inaction more than industry pressure.
+                    </li>
+                    <li>
+                        <strong>Reduce fear of job losses:</strong> Emphasise
+                        that "essential uses" remain protected. Officials need
+                        political cover - show that medical devices, safety
+                        equipment etc. are explicitly exempted.
+                    </li>
+                    <li>
+                        <strong>Counter the "blanket ban" narrative:</strong>
+                        Consistent messaging about "non-essential use
+                        regulation" removes the emotional barrier of appearing
+                        anti-business.
+                    </li>
+                    <li>
+                        <strong>Provide technical support:</strong> Help address
+                        capacity gaps by providing independent analysis of
+                        "essential use" claims - reduce reliance on
+                        industry-provided information.
+                    </li>
+                    <li>
+                        <strong>Leverage personal relevance:</strong> Officials
+                        drink the same water - make the health evidence
+                        personally salient, not abstract.
+                    </li>
+                    <li>
+                        <strong>Make support the easy path:</strong> The
+                        regional process is already underway - frame supporting
+                        it as the low-risk default, opposing it as the
+                        politically costly exception.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p>
+                    <strong>Framework:</strong> Behaviour Change Enablers &
+                    Barriers
+                </p>
+                <p><strong>Case:</strong> PFAS Policy Engagement</p>
+                <p style="margin-top: 10px">
+                    <em
+                        >Part of: Navigating Policy Engagement - A
+                        Practitioner's Guidebook</em
+                    >
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

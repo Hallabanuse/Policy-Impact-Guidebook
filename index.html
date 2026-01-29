@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Policy Impact Guidebook - Case Study Materials</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background: #f5f5f5;
+                min-height: 100vh;
+                padding: 40px 20px;
+            }
+
+            .container {
+                max-width: 900px;
+                margin: 0 auto;
+            }
+
+            .header {
+                background: linear-gradient(135deg, #2d5016 0%, #4a7c23 100%);
+                color: white;
+                padding: 40px;
+                border-radius: 12px;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+
+            .header h1 {
+                font-size: 32px;
+                margin-bottom: 15px;
+            }
+
+            .header p {
+                font-size: 16px;
+                opacity: 0.9;
+                line-height: 1.6;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+            .chapter-section {
+                margin-bottom: 30px;
+            }
+
+            .chapter-title {
+                font-size: 14px;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                color: #666;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+                border-bottom: 2px solid #ddd;
+            }
+
+            .tools-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+            }
+
+            .tool-card {
+                background: white;
+                border-radius: 10px;
+                padding: 25px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                transition:
+                    transform 0.2s,
+                    box-shadow 0.2s;
+                text-decoration: none;
+                color: inherit;
+                display: block;
+                border-left: 5px solid #ffc03f;
+            }
+
+            .tool-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            }
+
+            .tool-card.situation-model {
+                border-left-color: #e88980;
+            }
+
+            .tool-card.policy-context {
+                border-left-color: #ffc03f;
+            }
+
+            .tool-card.theory-of-change {
+                border-left-color: #b2dfb2;
+            }
+
+            .tool-card.coming-soon {
+                border-left-color: #ccc;
+                opacity: 0.6;
+                pointer-events: none;
+            }
+
+            .tool-card h3 {
+                font-size: 18px;
+                color: #333;
+                margin-bottom: 10px;
+            }
+
+            .tool-card p {
+                font-size: 14px;
+                color: #666;
+                line-height: 1.5;
+            }
+
+            .tool-card .status {
+                display: inline-block;
+                font-size: 11px;
+                padding: 4px 10px;
+                border-radius: 20px;
+                margin-top: 12px;
+                font-weight: 600;
+            }
+
+            .status.ready {
+                background: #e8f5e9;
+                color: #2e7d32;
+            }
+
+            .status.coming {
+                background: #f5f5f5;
+                color: #999;
+            }
+
+            .presentation-link {
+                display: inline-block;
+                margin-top: 20px;
+                background: rgba(255, 255, 255, 0.2);
+                color: white;
+                padding: 12px 25px;
+                border-radius: 25px;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 14px;
+                transition: background 0.3s;
+            }
+
+            .presentation-link:hover {
+                background: rgba(255, 255, 255, 0.3);
+            }
+
+            .footer {
+                margin-top: 50px;
+                text-align: center;
+                font-size: 13px;
+                color: #888;
+            }
+
+            .footer a {
+                color: #4a7c23;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>Navigating Policy Engagement</h1>
+                <p>
+                    Interactive case study materials for the Practitioner's
+                    Guidebook. These tools illustrate key frameworks from
+                    Chapters 2, 3, and 4 using a PFAS regulation case.
+                </p>
+                <a href="presentation.html" class="presentation-link"
+                    >View Process Presentation</a
+                >
+            </div>
+
+            <!-- Chapter 2 -->
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    Chapter 2: Assessing the Policy Context
+                </div>
+                <div class="tools-grid">
+                    <a
+                        href="situation-model.html"
+                        class="tool-card situation-model"
+                    >
+                        <h3>Situation Model</h3>
+                        <p>
+                            Visual model showing PFAS as a threat to
+                            biodiversity and human wellbeing, with contributing
+                            factors, direct threats, and biophysical factors.
+                        </p>
+                        <span class="status ready">Ready</span>
+                    </a>
+                    <a
+                        href="policy-context.html"
+                        class="tool-card policy-context"
+                    >
+                        <h3>Policy Context Assessment</h3>
+                        <p>
+                            Multiple Streams Framework analysis examining
+                            Problems, Politics, and Policies streams to identify
+                            policy windows for engagement.
+                        </p>
+                        <span class="status ready">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Chapter 3 -->
+            <div class="chapter-section">
+                <div class="chapter-title">
+                    Chapter 3: Planning Policy Engagement
+                </div>
+                <div class="tools-grid">
+                    <a
+                        href="theory-of-change-generic.html"
+                        class="tool-card theory-of-change"
+                    >
+                        <h3>Theory of Change (Generic)</h3>
+                        <p>
+                            Template with explanations of all elements for
+                            planning policy engagement strategies.
+                        </p>
+                        <span class="status ready">Ready</span>
+                    </a>
+                    <a
+                        href="theory-of-change-pfas-strategy.html"
+                        class="tool-card theory-of-change"
+                    >
+                        <h3>Theory of Change (PFAS Strategy)</h3>
+                        <p>
+                            Applied example: Defending strong PFAS regulation
+                            against industry lobbying and national political
+                            undermining.
+                        </p>
+                        <span class="status ready">Ready</span>
+                    </a>
+                    <a
+                        href="enablers-barriers.html"
+                        class="tool-card theory-of-change"
+                    >
+                        <h3>Enablers &amp; Barriers</h3>
+                        <p>
+                            Analysis of factors driving government officials'
+                            support for strong PFAS regulation.
+                        </p>
+                        <span class="status ready">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Chapter 4 -->
+            <div class="chapter-section">
+                <div class="chapter-title">Chapter 4: Measuring Success</div>
+                <div class="tools-grid">
+                    <a
+                        href="outcome-harvesting.html"
+                        class="tool-card theory-of-change"
+                    >
+                        <h3>Outcome Harvesting</h3>
+                        <p>
+                            Rationale for outcome harvesting in policy contexts,
+                            AI-assisted discovery, and two exemplary outcome
+                            statements.
+                        </p>
+                        <span class="status ready">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>
+                    Part of the
+                    <strong
+                        >CMP Collaborative Learning Initiative on Policy
+                        Impact</strong
+                    >
+                </p>
+                <p style="margin-top: 8px">
+                    Guidebook: Navigating Policy Engagement | Case: PFAS
+                    Regulation
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

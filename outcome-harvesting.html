@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Outcome Harvesting - PFAS Policy Engagement</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background: #f5f5f5;
+                padding: 20px;
+                min-width: 1200px;
+            }
+
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                background: white;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Header */
+            .header {
+                background: linear-gradient(135deg, #2d5016 0%, #4a7c23 100%);
+                color: white;
+                padding: 25px 30px;
+                border-radius: 8px;
+                margin-bottom: 25px;
+            }
+
+            .header h1 {
+                font-size: 26px;
+                margin-bottom: 10px;
+            }
+
+            .header p {
+                font-size: 14px;
+                line-height: 1.6;
+                opacity: 0.9;
+            }
+
+            /* Section styling */
+            .section {
+                margin-bottom: 35px;
+            }
+
+            .section h2 {
+                font-size: 18px;
+                color: #333;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+                border-bottom: 2px solid #eee;
+            }
+
+            .section h3 {
+                font-size: 15px;
+                color: #2d5016;
+                margin-bottom: 12px;
+                margin-top: 20px;
+            }
+
+            .section p {
+                font-size: 13px;
+                color: #444;
+                line-height: 1.7;
+                margin-bottom: 12px;
+            }
+
+            .section ul {
+                font-size: 13px;
+                color: #444;
+                line-height: 1.7;
+                margin-left: 25px;
+                margin-bottom: 15px;
+            }
+
+            .section li {
+                margin-bottom: 8px;
+            }
+
+            /* Highlight box */
+            .highlight-box {
+                background: #f0f7ff;
+                border-left: 4px solid #42aec9;
+                padding: 18px 20px;
+                margin: 20px 0;
+                border-radius: 0 8px 8px 0;
+            }
+
+            .highlight-box h3 {
+                font-size: 14px;
+                color: #333;
+                margin-bottom: 10px;
+                margin-top: 0;
+            }
+
+            .highlight-box p {
+                font-size: 12px;
+                margin-bottom: 8px;
+            }
+
+            /* Warning/caution box */
+            .caution-box {
+                background: #fff8e6;
+                border-left: 4px solid #ffc03f;
+                padding: 18px 20px;
+                margin: 20px 0;
+                border-radius: 0 8px 8px 0;
+            }
+
+            .caution-box h3 {
+                font-size: 14px;
+                color: #333;
+                margin-bottom: 10px;
+                margin-top: 0;
+            }
+
+            .caution-box p, .caution-box ul {
+                font-size: 12px;
+            }
+
+            /* AI section */
+            .ai-section {
+                background: #f5f0ff;
+                border-left: 4px solid #8d74d8;
+                padding: 18px 20px;
+                margin: 20px 0;
+                border-radius: 0 8px 8px 0;
+            }
+
+            .ai-section h3 {
+                font-size: 14px;
+                color: #333;
+                margin-bottom: 10px;
+                margin-top: 0;
+            }
+
+            .ai-section p, .ai-section ul {
+                font-size: 12px;
+            }
+
+            /* Result context box */
+            .result-context {
+                background: #e8f5e9;
+                border: 2px solid #9ad0e7;
+                padding: 20px;
+                border-radius: 8px;
+                margin: 25px 0;
+            }
+
+            .result-context h3 {
+                font-size: 14px;
+                color: #2d5016;
+                margin-bottom: 10px;
+                margin-top: 0;
+            }
+
+            .result-context p {
+                font-size: 13px;
+                color: #333;
+            }
+
+            .result-label {
+                display: inline-block;
+                background: #9ad0e7;
+                color: white;
+                font-size: 10px;
+                font-weight: 600;
+                padding: 3px 10px;
+                border-radius: 3px;
+                margin-bottom: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            /* Outcome cards */
+            .outcomes-container {
+                display: flex;
+                gap: 25px;
+                margin-top: 25px;
+            }
+
+            .outcome-card {
+                flex: 1;
+                background: white;
+                border: 2px solid #ddd;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            }
+
+            .outcome-header {
+                background: linear-gradient(135deg, #42aec9 0%, #3a9db5 100%);
+                color: white;
+                padding: 15px 20px;
+            }
+
+            .outcome-header h4 {
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+
+            .outcome-header .date {
+                font-size: 11px;
+                opacity: 0.9;
+            }
+
+            .outcome-body {
+                padding: 20px;
+            }
+
+            .outcome-field {
+                margin-bottom: 15px;
+            }
+
+            .outcome-field:last-child {
+                margin-bottom: 0;
+            }
+
+            .field-label {
+                font-size: 10px;
+                font-weight: 600;
+                color: #666;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                margin-bottom: 5px;
+            }
+
+            .field-content {
+                font-size: 12px;
+                color: #333;
+                line-height: 1.5;
+            }
+
+            .field-content.highlight {
+                background: #f8f9fa;
+                padding: 10px 12px;
+                border-radius: 4px;
+                border-left: 3px solid #42aec9;
+            }
+
+            /* Contribution strength indicator */
+            .contribution-indicator {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin-top: 8px;
+            }
+
+            .strength-bar {
+                display: flex;
+                gap: 3px;
+            }
+
+            .strength-segment {
+                width: 20px;
+                height: 8px;
+                background: #e0e0e0;
+                border-radius: 2px;
+            }
+
+            .strength-segment.active {
+                background: #48bb78;
+            }
+
+            .strength-segment.medium {
+                background: #f6ad55;
+            }
+
+            .strength-label {
+                font-size: 10px;
+                color: #666;
+            }
+
+            /* Source tags */
+            .source-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px;
+                margin-top: 8px;
+            }
+
+            .source-tag {
+                font-size: 9px;
+                padding: 3px 8px;
+                border-radius: 12px;
+                background: #e8f5e9;
+                color: #2d5016;
+            }
+
+            .source-tag.ai-found {
+                background: #f5f0ff;
+                color: #6b46c1;
+            }
+
+            /* Process diagram */
+            .process-flow {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 15px;
+                padding: 30px;
+                background: #fafafa;
+                border-radius: 8px;
+                margin: 20px 0;
+            }
+
+            .process-step {
+                text-align: center;
+                max-width: 140px;
+            }
+
+            .process-icon {
+                width: 50px;
+                height: 50px;
+                background: white;
+                border: 2px solid #42aec9;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 10px;
+                font-size: 20px;
+            }
+
+            .process-step-title {
+                font-size: 11px;
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 4px;
+            }
+
+            .process-step-desc {
+                font-size: 9px;
+                color: #666;
+                line-height: 1.4;
+            }
+
+            .process-arrow {
+                font-size: 24px;
+                color: #ccc;
+            }
+
+            /* Table styling */
+            .comparison-table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 12px;
+                margin: 20px 0;
+            }
+
+            .comparison-table th {
+                background: #f5f5f5;
+                padding: 12px 15px;
+                text-align: left;
+                font-weight: 600;
+                color: #333;
+                border-bottom: 2px solid #ddd;
+            }
+
+            .comparison-table td {
+                padding: 12px 15px;
+                border-bottom: 1px solid #eee;
+                vertical-align: top;
+            }
+
+            .comparison-table tr:hover {
+                background: #fafafa;
+            }
+
+            /* Footer */
+            .footer {
+                margin-top: 35px;
+                padding-top: 18px;
+                border-top: 1px solid #ddd;
+                font-size: 10px;
+                color: #666;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <h1>Outcome Harvesting for Policy Engagement</h1>
+                <p>
+                    Capturing and documenting observed changes in the behaviour, relationships,
+                    actions, or policies of social actors that your project has influenced.
+                    This approach is particularly suited for complex policy contexts where
+                    change pathways are non-linear and unpredictable.
+                </p>
+            </div>
+
+            <!-- Section 1: Rationale -->
+            <div class="section">
+                <h2>Why Outcome Harvesting for Policy Work?</h2>
+
+                <p>
+                    Traditional monitoring approaches often struggle in policy and advocacy contexts.
+                    Pre-defined indicators assume we know what success will look like and when it will
+                    happen. But policy change is rarely linear: unexpected windows of opportunity open,
+                    strategies need to pivot, and influence often manifests in ways we didn't anticipate.
+                </p>
+
+                <h3>The Challenge of Attributing Influence</h3>
+                <p>
+                    Policy outcomes result from multiple actors and forces converging. A regulation passes
+                    not because of one organisation's advocacy alone, but because of the combined effect
+                    of public pressure, political timing, scientific evidence, media coverage, and often
+                    events beyond anyone's control. Outcome Harvesting doesn't claim to prove causation -
+                    instead, it documents plausible contribution through evidence-based narratives.
+                </p>
+
+                <div class="highlight-box">
+                    <h3>What Makes Outcome Harvesting Different</h3>
+                    <p><strong>Traditional M&E:</strong> Define indicators upfront, then measure whether targets were hit.</p>
+                    <p><strong>Outcome Harvesting:</strong> Work backwards from observed changes to understand what happened and how your work contributed.</p>
+                    <p style="margin-top: 10px;">
+                        This "harvesting" approach is particularly valuable when:
+                    </p>
+                    <ul style="margin-top: 8px; margin-bottom: 0;">
+                        <li>Outcomes emerge unpredictably from complex systems</li>
+                        <li>Your influence is indirect (through coalitions, media, etc.)</li>
+                        <li>The policy timeline extends beyond your project cycle</li>
+                        <li>You need to capture "negative" outcomes (e.g., successfully blocking harmful policies)</li>
+                    </ul>
+                </div>
+
+                <h3>The Six Elements of an Outcome Statement</h3>
+                <p>
+                    Every harvested outcome is documented through a structured statement that answers:
+                </p>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Element</th>
+                            <th style="width: 40%;">Question</th>
+                            <th style="width: 35%;">Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Who</strong></td>
+                            <td>Which social actor changed?</td>
+                            <td>The Environment Minister</td>
+                        </tr>
+                        <tr>
+                            <td><strong>What</strong></td>
+                            <td>What did they do differently?</td>
+                            <td>Publicly endorsed strict regulation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>When/Where</strong></td>
+                            <td>When and in what context?</td>
+                            <td>At the parliamentary committee hearing, March 2026</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Significance</strong></td>
+                            <td>Why does this matter?</td>
+                            <td>This signals the government's likely vote position</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contribution</strong></td>
+                            <td>How did our work contribute?</td>
+                            <td>Our briefing on treatment costs was cited in her statement</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Evidence</strong></td>
+                            <td>How do we know this happened?</td>
+                            <td>Official transcript, media coverage, meeting notes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Section 2: AI-Assisted Harvesting -->
+            <div class="section">
+                <h2>AI-Assisted Outcome Discovery</h2>
+
+                <p>
+                    One of the practical challenges of Outcome Harvesting is the labour-intensive process
+                    of finding outcomes. Staff must constantly monitor news, policy documents, social media,
+                    and other sources to spot when relevant actors change their behaviour or positions.
+                    Emerging AI tools can significantly reduce this burden through automated monitoring
+                    and intelligent filtering.
+                </p>
+
+                <div class="ai-section">
+                    <h3>How AI Can Support Outcome Harvesting</h3>
+                    <ul>
+                        <li><strong>Automated media monitoring:</strong> AI can continuously scan news sources,
+                        press releases, and parliamentary records for mentions of your target actors and issues,
+                        flagging potential outcomes for human review.</li>
+                        <li><strong>Social media analysis:</strong> Track when politicians, officials, or
+                        organisations change their public positions on social platforms - often an early
+                        signal of shifting stances.</li>
+                        <li><strong>Document analysis:</strong> AI can process large volumes of policy documents,
+                        consultation responses, and official communications to identify changes in language,
+                        positions, or commitments over time.</li>
+                        <li><strong>Pattern recognition:</strong> Identify when multiple actors begin using
+                        similar framings or arguments - potentially evidence that your communication strategy
+                        is gaining traction.</li>
+                        <li><strong>Alert systems:</strong> Set up automated notifications when key decision
+                        points approach (votes, consultations, hearings) to ensure systematic harvesting
+                        around critical moments.</li>
+                    </ul>
+                </div>
+
+                <div class="process-flow">
+                    <div class="process-step">
+                        <div class="process-icon">1</div>
+                        <div class="process-step-title">Define Scope</div>
+                        <div class="process-step-desc">Specify actors, keywords, sources to monitor</div>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div class="process-step">
+                        <div class="process-icon">2</div>
+                        <div class="process-step-title">Automated Scraping</div>
+                        <div class="process-step-desc">AI monitors sources continuously</div>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div class="process-step">
+                        <div class="process-icon">3</div>
+                        <div class="process-step-title">AI Filtering</div>
+                        <div class="process-step-desc">Relevance scoring, duplicate removal</div>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div class="process-step">
+                        <div class="process-icon">4</div>
+                        <div class="process-step-title">Human Review</div>
+                        <div class="process-step-desc">Staff verify and assess significance</div>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div class="process-step">
+                        <div class="process-icon">5</div>
+                        <div class="process-step-title">Draft Statements</div>
+                        <div class="process-step-desc">AI assists structuring outcome narratives</div>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div class="process-step">
+                        <div class="process-icon">6</div>
+                        <div class="process-step-title">Verification</div>
+                        <div class="process-step-desc">Substantiate contribution claims</div>
+                    </div>
+                </div>
+
+                <div class="caution-box">
+                    <h3>Important Considerations</h3>
+                    <ul>
+                        <li><strong>Human judgment remains essential:</strong> AI can find potential outcomes,
+                        but assessing significance and contribution requires human understanding of context.</li>
+                        <li><strong>Verification is critical:</strong> AI-flagged outcomes must be verified
+                        through primary sources before being formally documented.</li>
+                        <li><strong>Privacy and ethics:</strong> Ensure monitoring practices comply with data
+                        protection regulations and ethical standards.</li>
+                        <li><strong>Don't over-claim contribution:</strong> Just because your framing appears
+                        in public discourse doesn't mean you caused it - be rigorous about contribution evidence.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 3: Exemplary Outcomes -->
+            <div class="section">
+                <h2>Exemplary Outcome Statements</h2>
+
+                <p>
+                    The following examples illustrate how outcomes might be documented for the PFAS policy
+                    engagement case. Both relate to the same intermediate result in our Theory of Change:
+                    achieving government support for strong regulation with limited exemptions.
+                </p>
+
+                <div class="result-context">
+                    <span class="result-label">Theory of Change Result</span>
+                    <h3>Government officials support strong PFAS regulation (limited exemptions) in the regional vote</h3>
+                    <p>
+                        These harvested outcomes represent observable changes in behaviour that provide
+                        evidence of progress toward this result. Each captures a specific moment when
+                        a social actor did something different that matters for our strategy.
+                    </p>
+                </div>
+
+                <div class="outcomes-container">
+                    <!-- Outcome 1 -->
+                    <div class="outcome-card">
+                        <div class="outcome-header">
+                            <h4>Outcome 1: Ministry Adopts Economic Framing</h4>
+                            <div class="date">Harvested: November 2025</div>
+                        </div>
+                        <div class="outcome-body">
+                            <div class="outcome-field">
+                                <div class="field-label">Who Changed</div>
+                                <div class="field-content">
+                                    The Deputy Director of the Environment Ministry's Chemicals Division
+                                </div>
+                            </div>
+
+                            <div class="outcome-field">
+                                <div class="field-label">What Changed</div>
+                                <div class="field-content highlight">
+                                    In an inter-ministerial meeting on the upcoming regional vote, the Deputy
+                                    Director argued for supporting strict regulation by citing the comparison
+                                    between water treatment costs and industry transition costs - a framing
+                                    that had not previously appeared in ministry communications.
+                                </div>
+                            </div>
+
+                            <div class="outcome-field">
+                                <div class="field-label">When & Where</div>
+                                <div class="field-content">
+                                    Inter-ministerial coordination meeting, 14 November 2025
+                                </div>
+                            </div>
+
+                            <div class="outcome-field">
+                                <div class="field-label">Significance</div>
+                                <div class="field-content">
+                                    This represents a shift from the ministry's previous neutral-to-cautious
+                                    stance. The economic framing directly counters the Finance Ministry's
+                                    concerns about industry impacts, potentially influencing the government's
+                                    unified position ahead of the regional vote.
+                                </div>
+                            </div>
+
+                            <div class="outcome-field">
+                                <div class="field-label">Contribution</div>
+                                <div class="field-content">
+                                    Our policy brief on "The True Cost of Inaction" was shared with the Deputy
+                                    Director's office three weeks prior. The specific figure cited in the meeting
+                                    (treatment costs comparison) matches our briefing. A ministry contact confirmed
+                                    the brief was discussed in preparatory meetings.
+                                    <div class="contribution-indicator">
+                                        <div class="strength-bar">
+                                            <div class="strength-segment active"></div>
+                                            <div class="strength-segment active"></div>
+                                            <div class="strength-segment active"></div>
+                                            <div class="strength-segment"></div>
+                                        </div>
+                                        <span class="strength-label">Significant contribution (corroborated)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="outcome-field">
+                                <div class="field-label">Sources</div>
+                                <div class="source-tags">
+                                    <span class="source-tag">Meeting notes (ministry contact)</span>
+                                    <span class="source-tag">Internal communication log</span>
+                                    <span class="source-tag">Policy brief delivery confirmation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Outcome 2 -->
+                    <div class="outcome-card">
+                        <div class="outcome-header">
+                            <h4>Outcome 2: Conservative MP Withdraws Opposition Motion</h4>
+                            <div class="date">Harvested: January 2026</div>
+                        </div>
+                        <div class="outcome-body">
+                            <div class="outcome-field">
+                                <div class="field-label">Who Changed</div>
+                                <div class="field-content">
+                                    Member of Parliament from the centre-right party, Environment Committee member
+                                </div>
+                            </div>
+
+                            <div class="outcome-field">
+                                <div class="field-label">What Changed</div>
+                                <div class="field-content highlight">
+                                    The MP withdrew a draft parliamentary motion that would have called on the
+                                    government to seek extended exemptions and longer transition periods in
+                                    the regional restriction process. The motion had been scheduled for
+                                    committee discussion.
+                                </div>
+                            </div>
+
+                            <div class="outcome-field">
+                                <div class="field-label">When & Where</div>
+                                <div class="field-content">
+                                    Parliamentary Environment Committee, 8 January 2026
+                                </div>
+                            </div>
+
+                            <div class="outcome-field">
+                                <div class="field-label">Significance</div>
+                                <div class="field-content">
+                                    This prevented a potential political signal that could have provided cover
+                                    for the government to soften its position. The withdrawal also suggests
+                                    the MP concluded there was insufficient support within their own party -
+                                    indicating the "essential uses" messaging may be reducing conservative
+                                    opposition more broadly.
+                                </div>
+                            </div>
+
+                            <div class="outcome-field">
+                                <div class="field-label">Contribution</div>
+                                <div class="field-content">
+                                    We cannot claim direct contribution to the MP's decision. However, our
+                                    coalition's media campaign emphasising that "essential uses remain protected"
+                                    received significant coverage in the weeks prior. The MP's withdrawal
+                                    statement referenced "recognising that medical and safety uses are already
+                                    exempted" - language consistent with our messaging.
+                                    <div class="contribution-indicator">
+                                        <div class="strength-bar">
+                                            <div class="strength-segment medium"></div>
+                                            <div class="strength-segment medium"></div>
+                                            <div class="strength-segment"></div>
+                                            <div class="strength-segment"></div>
+                                        </div>
+                                        <span class="strength-label">Plausible contribution (indirect)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="outcome-field">
+                                <div class="field-label">Sources</div>
+                                <div class="source-tags">
+                                    <span class="source-tag">Committee agenda (before/after)</span>
+                                    <span class="source-tag">MP's public statement</span>
+                                    <span class="source-tag ai-found">AI-flagged: news coverage</span>
+                                    <span class="source-tag ai-found">AI-flagged: social media</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Linking to Theory of Change -->
+            <div class="section">
+                <h2>Linking Outcomes to Your Theory of Change</h2>
+
+                <p>
+                    Harvested outcomes should be systematically connected back to your Theory of Change.
+                    This creates a learning loop: outcomes either provide evidence that your causal
+                    assumptions are holding, or they reveal where your theory needs revision.
+                </p>
+
+                <div class="highlight-box">
+                    <h3>Questions to Ask for Each Harvested Outcome</h3>
+                    <ul style="margin-bottom: 0;">
+                        <li>Which result in our Theory of Change does this outcome relate to?</li>
+                        <li>Does this outcome support or challenge our causal assumptions?</li>
+                        <li>What does this tell us about our strategy's effectiveness?</li>
+                        <li>Should we adjust our activities based on what we've learned?</li>
+                        <li>Are there unexpected outcomes that suggest new pathways to impact?</li>
+                    </ul>
+                </div>
+
+                <p>
+                    In the examples above, both outcomes relate to the same intermediate result but
+                    provide different types of evidence. Outcome 1 shows direct uptake of our
+                    messaging by a key actor. Outcome 2 shows a "defensive" win - blocking a
+                    negative development - with more indirect contribution. Together, they build
+                    a picture of how influence is accumulating toward the desired policy outcome.
+                </p>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p>
+                    <strong>Methodology:</strong> Outcome Harvesting (Wilson-Grau & Britt)
+                </p>
+                <p><strong>Case:</strong> PFAS Policy Engagement</p>
+                <p style="margin-top: 10px;">
+                    <em>Part of: Navigating Policy Engagement - A Practitioner's Guidebook</em>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

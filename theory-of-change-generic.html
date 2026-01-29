@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Theory of Change - Generic Template</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background: #f5f5f5;
+                padding: 20px;
+                min-width: 1200px;
+            }
+
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                background: white;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Header */
+            .header {
+                background: linear-gradient(135deg, #2d5016 0%, #4a7c23 100%);
+                color: white;
+                padding: 25px 30px;
+                border-radius: 8px;
+                margin-bottom: 30px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+                margin-bottom: 10px;
+            }
+
+            .header p {
+                font-size: 14px;
+                line-height: 1.6;
+                opacity: 0.9;
+            }
+
+            /* Introduction */
+            .intro {
+                background: #f8f9fa;
+                border-left: 4px solid #4a7c23;
+                padding: 20px;
+                margin-bottom: 30px;
+                border-radius: 0 8px 8px 0;
+            }
+
+            .intro h2 {
+                font-size: 18px;
+                color: #333;
+                margin-bottom: 10px;
+            }
+
+            .intro p {
+                font-size: 14px;
+                color: #555;
+                line-height: 1.6;
+            }
+
+            /* Diagram area */
+            .diagram-section {
+                margin-bottom: 40px;
+            }
+
+            .diagram-title {
+                font-size: 16px;
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 20px;
+                padding-bottom: 10px;
+                border-bottom: 2px solid #eee;
+            }
+
+            .results-chain {
+                display: flex;
+                align-items: flex-start;
+                gap: 20px;
+                padding: 40px 30px;
+                background: #fafafa;
+                border-radius: 8px;
+                overflow-x: auto;
+                min-height: 320px;
+            }
+
+            /* Arrow connector */
+            .arrow {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 30px;
+                color: #666;
+                font-size: 20px;
+                margin-top: 30px;
+            }
+
+            /* Element containers */
+            .element-group {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+
+            /* Action (hexagon with border only) */
+            .action {
+                width: 130px;
+                height: 90px;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                font-size: 13px;
+                font-weight: 500;
+                color: #333;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+
+            .action::before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: white;
+                clip-path: polygon(
+                    15% 0%,
+                    85% 0%,
+                    100% 50%,
+                    85% 100%,
+                    15% 100%,
+                    0% 50%
+                );
+                border: 3px solid #f4dc5b;
+                z-index: 0;
+            }
+
+            .action-inner {
+                position: relative;
+                z-index: 1;
+                padding: 10px;
+                background: white;
+                clip-path: polygon(
+                    15% 0%,
+                    85% 0%,
+                    100% 50%,
+                    85% 100%,
+                    15% 100%,
+                    0% 50%
+                );
+                width: calc(100% - 6px);
+                height: calc(100% - 6px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Simplified hexagon using SVG background */
+            .action {
+                width: 140px;
+                height: 95px;
+                background: none;
+                position: relative;
+            }
+
+            .action svg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .action span {
+                position: relative;
+                z-index: 1;
+                padding: 15px;
+                text-align: center;
+                font-size: 12px;
+                line-height: 1.3;
+            }
+
+            .action:hover {
+                transform: scale(1.03);
+            }
+
+            /* Activity (rounded rectangle with border) */
+            .activity {
+                min-width: 100px;
+                padding: 10px 15px;
+                background: white;
+                border: 2px solid #f4dc5b;
+                border-radius: 20px;
+                font-size: 11px;
+                color: #555;
+                text-align: center;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+
+            .activity:hover {
+                transform: scale(1.03);
+                background: #fffef5;
+            }
+
+            /* Intermediate Result */
+            .intermediate-result {
+                min-width: 140px;
+                max-width: 160px;
+                min-height: 70px;
+                background: white;
+                border: 3px solid #9ad0e7;
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 12px 15px;
+                font-size: 12px;
+                font-weight: 500;
+                color: #333;
+                line-height: 1.3;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+
+            .intermediate-result:hover {
+                transform: scale(1.03);
+            }
+
+            /* Threat Reduction Result */
+            .threat-reduction {
+                min-width: 140px;
+                max-width: 160px;
+                min-height: 70px;
+                background: white;
+                border: 3px solid #df88d5;
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 12px 15px;
+                font-size: 12px;
+                font-weight: 500;
+                color: #333;
+                line-height: 1.3;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+
+            .threat-reduction:hover {
+                transform: scale(1.03);
+            }
+
+            /* Focal Value (oval with border) */
+            .value {
+                min-width: 130px;
+                min-height: 80px;
+                background: white;
+                border: 3px solid #b2dfb2;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 15px;
+                font-size: 12px;
+                font-weight: 500;
+                color: #333;
+                line-height: 1.3;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+
+            .value:hover {
+                transform: scale(1.03);
+            }
+
+            .value.human-wellbeing {
+                border-color: #808b82;
+            }
+
+            /* Objective (solid cyan rectangle) */
+            .objective {
+                background: #42aec9;
+                color: white;
+                padding: 8px 15px;
+                border-radius: 3px;
+                font-size: 11px;
+                font-weight: 500;
+                text-align: center;
+                min-width: 100px;
+            }
+
+            /* Goal (solid cyan rounded) */
+            .goal {
+                background: #42aec9;
+                color: white;
+                padding: 10px 20px;
+                border-radius: 20px;
+                font-size: 11px;
+                font-weight: 500;
+                text-align: center;
+            }
+
+            /* Indicator (purple triangle) */
+            .indicator {
+                width: 0;
+                height: 0;
+                border-left: 14px solid transparent;
+                border-right: 14px solid transparent;
+                border-bottom: 24px solid #8d74d8;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+
+            .indicator:hover {
+                transform: scale(1.1);
+            }
+
+            /* Sub-elements row */
+            .sub-elements {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+                margin-top: 5px;
+            }
+
+            .sub-row {
+                display: flex;
+                gap: 8px;
+                align-items: center;
+            }
+
+            /* Activities row */
+            .activities-row {
+                display: flex;
+                gap: 8px;
+                margin-top: 8px;
+            }
+
+            /* Reading direction indicator */
+            .reading-direction {
+                text-align: center;
+                color: #888;
+                font-size: 12px;
+                margin-bottom: 15px;
+                font-style: italic;
+            }
+
+            /* Legend */
+            .legend {
+                margin-top: 30px;
+                padding: 25px;
+                background: #f9f9f9;
+                border-radius: 8px;
+            }
+
+            .legend-title {
+                font-size: 14px;
+                font-weight: bold;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            .legend-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 20px;
+            }
+
+            .legend-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .legend-shape {
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .legend-hexagon {
+                width: 35px;
+                height: 25px;
+            }
+
+            .legend-activity {
+                width: 35px;
+                height: 20px;
+                background: white;
+                border: 2px solid #f4dc5b;
+                border-radius: 10px;
+            }
+
+            .legend-intermediate {
+                width: 35px;
+                height: 22px;
+                background: white;
+                border: 2px solid #9ad0e7;
+                border-radius: 2px;
+            }
+
+            .legend-threat {
+                width: 35px;
+                height: 22px;
+                background: white;
+                border: 2px solid #df88d5;
+                border-radius: 2px;
+            }
+
+            .legend-value {
+                width: 35px;
+                height: 22px;
+                background: white;
+                border: 2px solid #b2dfb2;
+                border-radius: 50%;
+            }
+
+            .legend-objective {
+                width: 35px;
+                height: 18px;
+                background: #42aec9;
+                border-radius: 2px;
+            }
+
+            .legend-goal {
+                width: 35px;
+                height: 18px;
+                background: #42aec9;
+                border-radius: 9px;
+            }
+
+            .legend-indicator {
+                width: 0;
+                height: 0;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-bottom: 16px solid #8d74d8;
+            }
+
+            .legend-text {
+                font-size: 12px;
+                color: #333;
+            }
+
+            .legend-text strong {
+                display: block;
+                margin-bottom: 2px;
+            }
+
+            .legend-text small {
+                color: #666;
+                font-size: 10px;
+            }
+
+            /* Key Terms Table */
+            .key-terms {
+                margin-top: 40px;
+            }
+
+            .key-terms h2 {
+                font-size: 18px;
+                color: #333;
+                margin-bottom: 20px;
+            }
+
+            .terms-table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .terms-table tr:nth-child(odd) {
+                background: #f5f5f5;
+            }
+
+            .terms-table td {
+                padding: 12px 15px;
+                font-size: 13px;
+                color: #333;
+                vertical-align: top;
+                border-bottom: 1px solid #eee;
+            }
+
+            .terms-table td:first-child {
+                font-weight: 600;
+                width: 180px;
+                color: #2d5016;
+            }
+
+            /* Footer */
+            .footer {
+                margin-top: 40px;
+                padding-top: 20px;
+                border-top: 1px solid #ddd;
+                font-size: 11px;
+                color: #666;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <h1>Theory of Change - Generic Template</h1>
+                <p>
+                    A Theory of Change (or Results Chain) shows the causal
+                    assumptions about how your actions will achieve intermediate
+                    results and longer-term goals. It transforms the "current
+                    state" (situation model) into a "desired state" by mapping
+                    the pathway from actions to outcomes.
+                </p>
+            </div>
+
+            <!-- Introduction -->
+            <div class="intro">
+                <h2>From Situation Model to Results Chain</h2>
+                <p>
+                    Your situation model shows the current state - threats,
+                    contributing factors, and their impacts. The Theory of
+                    Change flips this: instead of showing what causes harm, it
+                    shows what needs to change and how your actions will achieve
+                    that change.
+                </p>
+            </div>
+
+            <!-- Diagram -->
+            <div class="diagram-section">
+                <div class="diagram-title">Generic Results Chain Structure</div>
+                <div class="reading-direction">
+                    Read left to right: Actions lead to results, which lead to
+                    outcomes for focal values
+                </div>
+
+                <div class="results-chain">
+                    <!-- Action -->
+                    <div class="element-group">
+                        <div class="action">
+                            <svg
+                                viewBox="0 0 140 95"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M20 2 L120 2 L138 47.5 L120 93 L20 93 L2 47.5 Z"
+                                    fill="white"
+                                    stroke="#f4dc5b"
+                                    stroke-width="3"
+                                />
+                            </svg>
+                            <span>Action</span>
+                        </div>
+                        <div class="activities-row">
+                            <div class="activity">Activity</div>
+                        </div>
+                    </div>
+
+                    <div class="arrow">→</div>
+
+                    <!-- Intermediate Result 1 -->
+                    <div class="element-group">
+                        <div class="intermediate-result">
+                            Intermediate result
+                        </div>
+                        <div class="activities-row">
+                            <div class="activity">Activity</div>
+                        </div>
+                    </div>
+
+                    <div class="arrow">→</div>
+
+                    <!-- Intermediate Result 2 with Objective -->
+                    <div class="element-group">
+                        <div class="intermediate-result">
+                            Intermediate result
+                        </div>
+                        <div class="sub-elements">
+                            <div class="sub-row">
+                                <div class="objective">Objective</div>
+                                <div class="indicator" title="Indicator"></div>
+                            </div>
+                            <div class="activity">Activity</div>
+                        </div>
+                    </div>
+
+                    <div class="arrow">→</div>
+
+                    <!-- Threat Reduction Result -->
+                    <div class="element-group">
+                        <div class="threat-reduction">
+                            Threat reduction result
+                        </div>
+                        <div class="sub-elements">
+                            <div class="sub-row">
+                                <div class="objective">
+                                    Threat reduction obj.
+                                </div>
+                                <div class="indicator" title="Indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="arrow">→</div>
+
+                    <!-- Focal Value -->
+                    <div class="element-group">
+                        <div class="value">Value</div>
+                        <div class="sub-elements">
+                            <div class="sub-row">
+                                <div class="goal">Goal</div>
+                                <div class="indicator" title="Indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legend -->
+            <div class="legend">
+                <div class="legend-title">Key: Results Chain Elements</div>
+                <div class="legend-grid">
+                    <div class="legend-item">
+                        <div class="legend-shape">
+                            <svg
+                                class="legend-hexagon"
+                                viewBox="0 0 35 25"
+                                fill="none"
+                            >
+                                <path
+                                    d="M5 1 L30 1 L34 12.5 L30 24 L5 24 L1 12.5 Z"
+                                    fill="white"
+                                    stroke="#f4dc5b"
+                                    stroke-width="2"
+                                />
+                            </svg>
+                        </div>
+                        <div class="legend-text">
+                            <strong>Action</strong>
+                            <small>Set of activities with common focus</small>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-shape legend-activity"></div>
+                        <div class="legend-text">
+                            <strong>Activity</strong>
+                            <small>Set of tasks within an action</small>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-shape legend-intermediate"></div>
+                        <div class="legend-text">
+                            <strong>Intermediate Result</strong>
+                            <small>Result en route to final goal</small>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-shape legend-threat"></div>
+                        <div class="legend-text">
+                            <strong>Threat Reduction Result</strong>
+                            <small>Reducing a direct threat</small>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-shape legend-value"></div>
+                        <div class="legend-text">
+                            <strong>Value</strong>
+                            <small>Ecosystems, species, or wellbeing</small>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-shape legend-objective"></div>
+                        <div class="legend-text">
+                            <strong>Objective</strong>
+                            <small>Formal statement of desired result</small>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-shape legend-goal"></div>
+                        <div class="legend-text">
+                            <strong>Goal</strong>
+                            <small>Desired future status of a value</small>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-shape legend-indicator"></div>
+                        <div class="legend-text">
+                            <strong>Indicator</strong>
+                            <small>Measures progress on objective/goal</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Terms -->
+            <div class="key-terms">
+                <h2>Key Terms</h2>
+                <table class="terms-table">
+                    <tr>
+                        <td>Action</td>
+                        <td>
+                            A set of activities with a common focus that work
+                            together to achieve specific goals and objectives by
+                            targeting key intervention points, optimising
+                            opportunities, and limiting constraints
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Activity</td>
+                        <td>A set of tasks within an overall action</td>
+                    </tr>
+                    <tr>
+                        <td>Intermediate Result</td>
+                        <td>
+                            A specific result that a project is working to
+                            achieve en route to accomplishing a final goal or
+                            objective
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Threat Reduction Result</td>
+                        <td>
+                            A specific result that a project is working to
+                            achieve in terms of reducing a direct threat
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Value</td>
+                        <td>
+                            The ecosystems, species and human well-being values
+                            on which the project or program is focused
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Goal</td>
+                        <td>
+                            A formal statement detailing a project's desired
+                            impact, especially the desired future status of a
+                            value
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Objective</td>
+                        <td>
+                            A formal statement detailing a desired intermediate
+                            result of a project, such as reducing a critical
+                            threat
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Indicator</td>
+                        <td>
+                            A measurable entity related to a specific
+                            information need (e.g., the status of a value,
+                            progress toward an objective or goal)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p>
+                    <strong>Framework:</strong> Open Standards for the Practice
+                    of Conservation (CMP)
+                </p>
+                <p>
+                    <strong>Purpose:</strong> Generic template showing Theory of
+                    Change / Results Chain structure
+                </p>
+                <p style="margin-top: 10px">
+                    <em
+                        >Part of: Navigating Policy Engagement - A
+                        Practitioner's Guidebook</em
+                    >
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
