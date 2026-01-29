@@ -1,0 +1,1178 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Theory of Change - Generic Template</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background: #f5f5f5;
+                padding: 20px;
+                min-width: 1200px;
+            }
+
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                background: white;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Header */
+            .header {
+                background: linear-gradient(135deg, #2d5016 0%, #4a7c23 100%);
+                color: white;
+                padding: 25px 30px;
+                border-radius: 8px;
+                margin-bottom: 30px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+                margin-bottom: 10px;
+            }
+
+            .header p {
+                font-size: 14px;
+                line-height: 1.6;
+                opacity: 0.9;
+            }
+
+            /* Introduction */
+            .intro {
+                background: #f8f9fa;
+                border-left: 4px solid #4a7c23;
+                padding: 20px;
+                margin-bottom: 30px;
+                border-radius: 0 8px 8px 0;
+            }
+
+            .intro h2 {
+                font-size: 18px;
+                color: #333;
+                margin-bottom: 10px;
+            }
+
+            .intro p {
+                font-size: 14px;
+                color: #555;
+                line-height: 1.6;
+            }
+
+            /* Diagram area */
+            .diagram-section {
+                margin-bottom: 40px;
+            }
+
+            .diagram-title {
+                font-size: 16px;
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 20px;
+                padding-bottom: 10px;
+                border-bottom: 2px solid #eee;
+            }
+
+            .results-chain {
+                display: flex;
+                align-items: flex-start;
+                gap: 15px;
+                padding: 30px;
+                background: #fafafa;
+                border-radius: 8px;
+                overflow-x: auto;
+            }
+
+            /* Arrow connector */
+            .arrow {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 40px;
+                color: #888;
+                font-size: 24px;
+                margin-top: 35px;
+            }
+
+            /* Element containers */
+            .element-group {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            /* Strategy (hexagon approximation) */
+            .strategy {
+                width: 140px;
+                min-height: 80px;
+                background: #f4dc5b;
+                border: 3px solid #d4bc3b;
+                clip-path: polygon(
+                    10% 0%,
+                    90% 0%,
+                    100% 50%,
+                    90% 100%,
+                    10% 100%,
+                    0% 50%
+                );
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 15px 20px;
+                font-size: 12px;
+                font-weight: 500;
+                color: #333;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+
+            .strategy:hover {
+                transform: scale(1.05);
+            }
+
+            /* Activity (rounded rectangle, smaller) */
+            .activity {
+                width: 120px;
+                min-height: 45px;
+                background: white;
+                border: 2px solid #f4dc5b;
+                border-radius: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 8px 12px;
+                font-size: 11px;
+                color: #555;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+
+            .activity:hover {
+                transform: scale(1.05);
+                background: #fffef0;
+            }
+
+            /* Intermediate Result */
+            .intermediate-result {
+                width: 150px;
+                min-height: 80px;
+                background: #9ad0e7;
+                border: 3px solid #7ab8cf;
+                border-radius: 4px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 12px;
+                font-size: 12px;
+                font-weight: 500;
+                color: #333;
+                cursor: pointer;
+                transition: transform 0.2s;
+                position: relative;
+            }
+
+            .intermediate-result:hover {
+                transform: scale(1.05);
+            }
+
+            /* Threat Reduction Result */
+            .threat-reduction {
+                width: 150px;
+                min-height: 80px;
+                background: #df88d5;
+                border: 3px solid #c068b6;
+                border-radius: 4px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 12px;
+                font-size: 12px;
+                font-weight: 500;
+                color: #333;
+                cursor: pointer;
+                transition: transform 0.2s;
+                position: relative;
+            }
+
+            .threat-reduction:hover {
+                transform: scale(1.05);
+            }
+
+            /* Biophysical Result */
+            .biophysical-result {
+                width: 150px;
+                min-height: 80px;
+                background: #739b94;
+                border: 3px solid #5a827b;
+                border-radius: 4px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 12px;
+                font-size: 12px;
+                font-weight: 500;
+                color: white;
+                cursor: pointer;
+                transition: transform 0.2s;
+                position: relative;
+            }
+
+            .biophysical-result:hover {
+                transform: scale(1.05);
+            }
+
+            /* Objective badge */
+            .objective {
+                background: #42aec9;
+                color: white;
+                font-size: 10px;
+                padding: 4px 10px;
+                border-radius: 10px;
+                margin-top: 8px;
+                font-weight: 600;
+            }
+
+            /* Goal badge */
+            .goal {
+                background: #42aec9;
+                color: white;
+                font-size: 10px;
+                padding: 4px 10px;
+                border-radius: 10px;
+                margin-top: 8px;
+                font-weight: 600;
+            }
+
+            /* Focal Values (ovals) */
+            .focal-value-group {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+                background: rgba(178, 223, 178, 0.2);
+                border-radius: 8px;
+                border: 2px dashed #b2dfb2;
+            }
+
+            .scope-label {
+                font-size: 11px;
+                font-weight: 600;
+                color: #666;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-align: center;
+                margin-bottom: 5px;
+            }
+
+            .biodiversity-focal {
+                width: 140px;
+                min-height: 70px;
+                background: white;
+                border: 3px solid #b2dfb2;
+                border-radius: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 10px;
+                font-size: 11px;
+                font-weight: 500;
+                color: #333;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+
+            .biodiversity-focal:hover {
+                transform: scale(1.05);
+                background: #f0fff0;
+            }
+
+            .human-wellbeing-focal {
+                width: 140px;
+                min-height: 70px;
+                background: white;
+                border: 3px solid #808b82;
+                border-radius: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 10px;
+                font-size: 11px;
+                font-weight: 500;
+                color: #333;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+
+            .human-wellbeing-focal:hover {
+                transform: scale(1.05);
+                background: #f5f7f5;
+            }
+
+            /* Activities row */
+            .activities-row {
+                display: flex;
+                gap: 8px;
+                margin-top: 10px;
+            }
+
+            /* Indicator (triangle) */
+            .indicator {
+                width: 0;
+                height: 0;
+                border-left: 12px solid transparent;
+                border-right: 12px solid transparent;
+                border-bottom: 20px solid #8d74d8;
+                margin-top: 5px;
+                position: relative;
+            }
+
+            .indicator-label {
+                position: absolute;
+                top: 25px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 9px;
+                color: #8d74d8;
+                white-space: nowrap;
+                font-weight: 600;
+            }
+
+            .objective-with-indicator {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin-top: 8px;
+            }
+
+            .indicator-inline {
+                width: 0;
+                height: 0;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-bottom: 14px solid #8d74d8;
+            }
+
+            /* Uncertainty line */
+            .uncertainty {
+                border-top: 2px dashed #999;
+                position: relative;
+            }
+
+            .uncertainty::after {
+                content: "?";
+                position: absolute;
+                top: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #999;
+                color: white;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                font-size: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Legend */
+            .legend {
+                margin-top: 30px;
+                padding: 20px;
+                background: #f9f9f9;
+                border-radius: 8px;
+            }
+
+            .legend-title {
+                font-size: 14px;
+                font-weight: bold;
+                margin-bottom: 15px;
+                color: #333;
+            }
+
+            .legend-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+            }
+
+            .legend-item {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .legend-shape {
+                flex-shrink: 0;
+            }
+
+            .legend-shape.hexagon {
+                width: 30px;
+                height: 20px;
+                background: #f4dc5b;
+                clip-path: polygon(
+                    10% 0%,
+                    90% 0%,
+                    100% 50%,
+                    90% 100%,
+                    10% 100%,
+                    0% 50%
+                );
+            }
+
+            .legend-shape.activity-shape {
+                width: 30px;
+                height: 18px;
+                background: white;
+                border: 2px solid #f4dc5b;
+                border-radius: 10px;
+            }
+
+            .legend-shape.intermediate {
+                width: 30px;
+                height: 20px;
+                background: #9ad0e7;
+                border-radius: 2px;
+            }
+
+            .legend-shape.threat-red {
+                width: 30px;
+                height: 20px;
+                background: #df88d5;
+                border-radius: 2px;
+            }
+
+            .legend-shape.biophysical {
+                width: 30px;
+                height: 20px;
+                background: #739b94;
+                border-radius: 2px;
+            }
+
+            .legend-shape.biodiversity {
+                width: 30px;
+                height: 20px;
+                background: white;
+                border: 2px solid #b2dfb2;
+                border-radius: 50%;
+            }
+
+            .legend-shape.wellbeing {
+                width: 30px;
+                height: 20px;
+                background: white;
+                border: 2px solid #808b82;
+                border-radius: 50%;
+            }
+
+            .legend-shape.objective-shape {
+                width: 30px;
+                height: 14px;
+                background: #42aec9;
+                border-radius: 7px;
+            }
+
+            .legend-shape.indicator-shape {
+                width: 0;
+                height: 0;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-bottom: 16px solid #8d74d8;
+            }
+
+            .legend-text {
+                font-size: 12px;
+                color: #333;
+            }
+
+            .legend-text strong {
+                display: block;
+                margin-bottom: 2px;
+            }
+
+            .legend-text small {
+                color: #666;
+                font-size: 10px;
+            }
+
+            /* Explanations section */
+            .explanations {
+                margin-top: 40px;
+            }
+
+            .explanation-card {
+                background: white;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 20px;
+                margin-bottom: 15px;
+                border-left: 4px solid #ddd;
+            }
+
+            .explanation-card.strategy-exp {
+                border-left-color: #f4dc5b;
+            }
+            .explanation-card.intermediate-exp {
+                border-left-color: #9ad0e7;
+            }
+            .explanation-card.threat-exp {
+                border-left-color: #df88d5;
+            }
+            .explanation-card.biophysical-exp {
+                border-left-color: #739b94;
+            }
+            .explanation-card.focal-exp {
+                border-left-color: #b2dfb2;
+            }
+            .explanation-card.objective-exp {
+                border-left-color: #42aec9;
+            }
+
+            .explanation-card h3 {
+                font-size: 16px;
+                color: #333;
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .explanation-card p {
+                font-size: 13px;
+                color: #555;
+                line-height: 1.6;
+                margin-bottom: 10px;
+            }
+
+            .explanation-card ul {
+                font-size: 13px;
+                color: #555;
+                line-height: 1.6;
+                margin-left: 20px;
+            }
+
+            .explanation-card li {
+                margin-bottom: 5px;
+            }
+
+            .tip {
+                background: #e8f5e9;
+                padding: 10px 15px;
+                border-radius: 4px;
+                font-size: 12px;
+                color: #2e7d32;
+                margin-top: 10px;
+            }
+
+            .tip::before {
+                content: "Tip: ";
+                font-weight: 600;
+            }
+
+            /* Reading direction indicator */
+            .reading-direction {
+                text-align: center;
+                color: #888;
+                font-size: 12px;
+                margin-bottom: 15px;
+                font-style: italic;
+            }
+
+            /* Footer */
+            .footer {
+                margin-top: 40px;
+                padding-top: 20px;
+                border-top: 1px solid #ddd;
+                font-size: 11px;
+                color: #666;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <h1>Theory of Change - Generic Template</h1>
+                <p>
+                    A Theory of Change (or Results Chain) shows the causal
+                    assumptions about how your actions will achieve intermediate
+                    results and longer-term goals. It transforms the "current
+                    state" (situation model) into a "desired state" by mapping
+                    the pathway from actions to outcomes.
+                </p>
+            </div>
+
+            <!-- Introduction -->
+            <div class="intro">
+                <h2>From Situation Model to Results Chain</h2>
+                <p>
+                    Your situation model shows the current state of the world -
+                    the threats, contributing factors, and their impacts on
+                    focal values. The Theory of Change flips this perspective:
+                    instead of showing what's causing harm, it shows what needs
+                    to change and how your actions will bring about that change.
+                    Each factor in your situation model can be converted to a
+                    desired result in your results chain.
+                </p>
+            </div>
+
+            <!-- Diagram -->
+            <div class="diagram-section">
+                <div class="diagram-title">Generic Results Chain Structure</div>
+                <div class="reading-direction">
+                    Read left to right: Actions lead to results, which lead to
+                    outcomes for focal values
+                </div>
+
+                <div class="results-chain">
+                    <!-- Strategy -->
+                    <div class="element-group">
+                        <div class="strategy">Strategy</div>
+                        <div class="activities-row">
+                            <div class="activity">Activity 1</div>
+                            <div class="activity">Activity 2</div>
+                        </div>
+                    </div>
+
+                    <div class="arrow">→</div>
+
+                    <!-- Intermediate Result 1 -->
+                    <div class="element-group">
+                        <div class="intermediate-result">
+                            Intermediate Result
+                            <div class="objective-with-indicator">
+                                <span class="objective">Objective</span>
+                                <div
+                                    class="indicator-inline"
+                                    title="Indicator"
+                                ></div>
+                            </div>
+                        </div>
+                        <div class="activity">Activity 3</div>
+                    </div>
+
+                    <div class="arrow">→</div>
+
+                    <!-- Intermediate Result 2 -->
+                    <div class="element-group">
+                        <div class="intermediate-result">
+                            Intermediate Result
+                        </div>
+                    </div>
+
+                    <div class="arrow">→</div>
+
+                    <!-- Threat Reduction Result -->
+                    <div class="element-group">
+                        <div class="threat-reduction">
+                            Threat Reduction Result
+                            <div class="objective-with-indicator">
+                                <span class="objective">Objective</span>
+                                <div
+                                    class="indicator-inline"
+                                    title="Indicator"
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="arrow">→</div>
+
+                    <!-- Biophysical Result -->
+                    <div class="element-group">
+                        <div class="biophysical-result">Biophysical Result</div>
+                    </div>
+
+                    <div class="arrow">→</div>
+
+                    <!-- Focal Values -->
+                    <div class="focal-value-group">
+                        <div class="scope-label">Conservation Scope</div>
+                        <div class="biodiversity-focal">
+                            Biodiversity Focal Value
+                            <div class="objective-with-indicator">
+                                <span class="goal">Goal</span>
+                                <div
+                                    class="indicator-inline"
+                                    title="Indicator"
+                                ></div>
+                            </div>
+                        </div>
+                        <div class="human-wellbeing-focal">
+                            Human Wellbeing Focal Value
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legend -->
+            <div class="legend">
+                <div class="legend-title">Key: Results Chain Elements</div>
+                <div class="legend-grid">
+                    <div class="legend-item">
+                        <div class="legend-shape hexagon"></div>
+                        <div class="legend-text">
+                            <strong>Strategy / Action</strong>
+                            <small>What you do to create change</small>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-shape activity-shape"></div>
+                        <div class="legend-text">
+                            <strong>Activity</strong>
+                            <small>Specific tasks within a strategy</small>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-shape intermediate"></div>
+                        <div class="legend-text">
+                            <strong>Intermediate Result</strong>
+                            <small
+                                >Changes in behaviour, policy, or
+                                conditions</small
+                            >
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-shape threat-red"></div>
+                        <div class="legend-text">
+                            <strong>Threat Reduction Result</strong>
+                            <small>Direct threats are reduced</small>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-shape biophysical"></div>
+                        <div class="legend-text">
+                            <strong>Biophysical Result</strong>
+                            <small>Ecosystem conditions improve</small>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-shape biodiversity"></div>
+                        <div class="legend-text">
+                            <strong>Biodiversity Focal Value</strong>
+                            <small
+                                >Species/ecosystems you aim to conserve</small
+                            >
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-shape wellbeing"></div>
+                        <div class="legend-text">
+                            <strong>Human Wellbeing Focal Value</strong>
+                            <small>Human outcomes linked to conservation</small>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-shape objective-shape"></div>
+                        <div class="legend-text">
+                            <strong>Objective / Goal</strong>
+                            <small>SMART statement of desired outcome</small>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-shape indicator-shape"></div>
+                        <div class="legend-text">
+                            <strong>Indicator</strong>
+                            <small>Measures progress on objectives/goals</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Explanations -->
+            <div class="explanations">
+                <h2 style="font-size: 18px; margin-bottom: 20px; color: #333">
+                    Element Descriptions
+                </h2>
+
+                <div class="explanation-card strategy-exp">
+                    <h3>
+                        <span
+                            style="
+                                display: inline-block;
+                                width: 24px;
+                                height: 16px;
+                                background: #f4dc5b;
+                                clip-path: polygon(
+                                    10% 0%,
+                                    90% 0%,
+                                    100% 50%,
+                                    90% 100%,
+                                    10% 100%,
+                                    0% 50%
+                                );
+                            "
+                        ></span>
+                        Strategy / Action
+                    </h3>
+                    <p>
+                        A strategy is a broad approach or set of actions
+                        designed to achieve specific results. It represents
+                        <strong>what your team will do</strong> to address
+                        threats and achieve conservation outcomes.
+                    </p>
+                    <p>Strategies should be:</p>
+                    <ul>
+                        <li>
+                            Linked to your situation analysis (addressing
+                            identified threats or contributing factors)
+                        </li>
+                        <li>Within your team's capacity to implement</li>
+                        <li>
+                            Based on evidence or sound reasoning about what
+                            works
+                        </li>
+                    </ul>
+                    <div class="tip">
+                        Activities are the specific tasks that implement a
+                        strategy. They help clarify how you expect to achieve
+                        specific results.
+                    </div>
+                </div>
+
+                <div class="explanation-card intermediate-exp">
+                    <h3>
+                        <span
+                            style="
+                                display: inline-block;
+                                width: 24px;
+                                height: 16px;
+                                background: #9ad0e7;
+                                border-radius: 2px;
+                            "
+                        ></span>
+                        Intermediate Result
+                    </h3>
+                    <p>
+                        Intermediate results are the changes that occur between
+                        your actions and the ultimate conservation outcome. They
+                        typically involve changes in:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Behaviour:</strong> Actors change what they
+                            do (e.g., farmers adopt new practices)
+                        </li>
+                        <li>
+                            <strong>Policy:</strong> Rules, regulations, or
+                            decisions change (e.g., law enacted)
+                        </li>
+                        <li>
+                            <strong>Knowledge/Attitudes:</strong> People
+                            understand or believe differently (e.g., awareness
+                            increases)
+                        </li>
+                        <li>
+                            <strong>Conditions:</strong> Circumstances change
+                            that enable other results (e.g., funding secured)
+                        </li>
+                    </ul>
+                    <div class="tip">
+                        Include psycho-social states (beliefs, attitudes,
+                        knowledge) to clarify why activities lead to behavioural
+                        outcomes.
+                    </div>
+                </div>
+
+                <div class="explanation-card threat-exp">
+                    <h3>
+                        <span
+                            style="
+                                display: inline-block;
+                                width: 24px;
+                                height: 16px;
+                                background: #df88d5;
+                                border-radius: 2px;
+                            "
+                        ></span>
+                        Threat Reduction Result
+                    </h3>
+                    <p>
+                        A threat reduction result shows that a
+                        <strong
+                            >direct threat has been reduced or
+                            eliminated</strong
+                        >. This is typically where your intermediate results
+                        translate into reduced pressure on biodiversity.
+                    </p>
+                    <p>Examples:</p>
+                    <ul>
+                        <li>Illegal logging reduced by X%</li>
+                        <li>Pollution discharge decreased</li>
+                        <li>Invasive species controlled</li>
+                    </ul>
+                    <div class="tip">
+                        It is good practice to have an objective for the direct
+                        threat, unless it is outside your manageable interest.
+                    </div>
+                </div>
+
+                <div class="explanation-card biophysical-exp">
+                    <h3>
+                        <span
+                            style="
+                                display: inline-block;
+                                width: 24px;
+                                height: 16px;
+                                background: #739b94;
+                                border-radius: 2px;
+                            "
+                        ></span>
+                        Biophysical Result
+                    </h3>
+                    <p>
+                        Biophysical results show improvements in
+                        <strong>ecosystem conditions</strong> that result from
+                        threat reduction. These are the ecological changes that
+                        ultimately benefit your focal values.
+                    </p>
+                    <p>Examples:</p>
+                    <ul>
+                        <li>Water quality improved</li>
+                        <li>Habitat connectivity restored</li>
+                        <li>Native vegetation recovering</li>
+                    </ul>
+                </div>
+
+                <div class="explanation-card focal-exp">
+                    <h3>
+                        <span
+                            style="
+                                display: inline-block;
+                                width: 24px;
+                                height: 16px;
+                                background: white;
+                                border: 2px solid #b2dfb2;
+                                border-radius: 50%;
+                            "
+                        ></span>
+                        Focal Values
+                    </h3>
+                    <p>
+                        <strong>Biodiversity Focal Values</strong> are the
+                        species, ecosystems, or ecological processes you aim to
+                        conserve. They represent the ultimate conservation
+                        outcomes.
+                    </p>
+                    <p>
+                        <strong>Human Wellbeing Focal Values</strong> show how
+                        conservation contributes to human outcomes - either
+                        through ecosystem services or directly through
+                        conservation actions.
+                    </p>
+                    <div class="tip">
+                        Some projects may only intend to achieve threat
+                        reduction or intermediate results within their
+                        timeframe. The ultimate impact on focal values may be
+                        more implicit.
+                    </div>
+                </div>
+
+                <div class="explanation-card objective-exp">
+                    <h3>
+                        <span
+                            style="
+                                display: inline-block;
+                                width: 24px;
+                                height: 14px;
+                                background: #42aec9;
+                                border-radius: 7px;
+                            "
+                        ></span>
+                        Objectives & Goals
+                    </h3>
+                    <p>
+                        <strong>Objectives</strong> are formal statements of
+                        outcomes (intermediate results) you believe are
+                        necessary to attain your goals. They specify the degree
+                        of change needed in the short and medium term.
+                    </p>
+                    <p>
+                        <strong>Goals</strong> are linked to your focal values
+                        and represent the longer-term conservation outcomes you
+                        seek.
+                    </p>
+                    <p>Good objectives and goals are <strong>SMART</strong>:</p>
+                    <ul>
+                        <li>
+                            <strong>S</strong>pecific - Clear about actors and
+                            behaviours
+                        </li>
+                        <li>
+                            <strong>M</strong>easurable - Can be quantified or
+                            assessed
+                        </li>
+                        <li>
+                            <strong>A</strong>chievable - Realistic given
+                            resources and context
+                        </li>
+                        <li>
+                            <strong>R</strong>esults-oriented - Focused on
+                            outcomes, not activities
+                        </li>
+                        <li>
+                            <strong>T</strong>ime-limited - Has a deadline or
+                            timeframe
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Key principles -->
+            <div
+                style="
+                    margin-top: 40px;
+                    padding: 25px;
+                    background: #e3f2fd;
+                    border-radius: 8px;
+                "
+            >
+                <h3
+                    style="font-size: 16px; color: #1565c0; margin-bottom: 15px"
+                >
+                    Key Principles for Building Results Chains
+                </h3>
+                <div
+                    style="
+                        display: grid;
+                        grid-template-columns: repeat(
+                            auto-fit,
+                            minmax(280px, 1fr)
+                        );
+                        gap: 20px;
+                    "
+                >
+                    <div>
+                        <h4
+                            style="
+                                font-size: 13px;
+                                color: #333;
+                                margin-bottom: 5px;
+                            "
+                        >
+                            1. Build on your Situation Model
+                        </h4>
+                        <p
+                            style="
+                                font-size: 12px;
+                                color: #555;
+                                line-height: 1.5;
+                            "
+                        >
+                            Use your situation analysis as the basis. Each
+                            threat or contributing factor can become a result
+                            showing the desired change.
+                        </p>
+                    </div>
+                    <div>
+                        <h4
+                            style="
+                                font-size: 13px;
+                                color: #333;
+                                margin-bottom: 5px;
+                            "
+                        >
+                            2. Make assumptions explicit
+                        </h4>
+                        <p
+                            style="
+                                font-size: 12px;
+                                color: #555;
+                                line-height: 1.5;
+                            "
+                        >
+                            Your theory of change shows what you assume will
+                            happen. Use dotted lines to indicate where you're
+                            uncertain about causal links.
+                        </p>
+                    </div>
+                    <div>
+                        <h4
+                            style="
+                                font-size: 13px;
+                                color: #333;
+                                margin-bottom: 5px;
+                            "
+                        >
+                            3. Include key actors
+                        </h4>
+                        <p
+                            style="
+                                font-size: 12px;
+                                color: #555;
+                                line-height: 1.5;
+                            "
+                        >
+                            Results should specify who needs to change their
+                            behaviour and what change is needed. Be clear about
+                            the actors involved.
+                        </p>
+                    </div>
+                    <div>
+                        <h4
+                            style="
+                                font-size: 13px;
+                                color: #333;
+                                margin-bottom: 5px;
+                            "
+                        >
+                            4. Define manageable interest
+                        </h4>
+                        <p
+                            style="
+                                font-size: 12px;
+                                color: #555;
+                                line-height: 1.5;
+                            "
+                        >
+                            Be clear about which results are within your control
+                            vs. influence vs. interest. Not all projects aim for
+                            the final impact.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p>
+                    <strong>Framework:</strong> Open Standards for the Practice
+                    of Conservation (CMP)
+                </p>
+                <p>
+                    <strong>Purpose:</strong> Generic template showing Theory of
+                    Change / Results Chain structure
+                </p>
+                <p style="margin-top: 10px">
+                    <em
+                        >Part of: Navigating Policy Engagement - A
+                        Practitioner's Guidebook</em
+                    >
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
